@@ -29,10 +29,11 @@ public class UnitTest1
 
         var textBox = new TextBox();
         textBox.SetBinding(nameof(TextBox.BindingContext), nameof(TestViewModel.Child));
-        //textBox.SetBinding(nameof(TextBox.Text), nameof(TestViewModel.Text));
+        textBox.SetBinding(nameof(TextBox.Text), nameof(TestViewModel.Text));
         stackPanel.AddChild(textBox);
 
         // Assert
+        Assert.Equal(child, textBox.BindingContext);
         Assert.Equal("Child 1243", textBox.Text);
     }
 
