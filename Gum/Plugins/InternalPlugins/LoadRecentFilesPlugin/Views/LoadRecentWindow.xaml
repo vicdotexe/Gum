@@ -15,10 +15,10 @@
             <RowDefinition Height="Auto"></RowDefinition>
         </Grid.RowDefinitions>
 
-        <!--<TextBox Text="{Binding FilterText}"></TextBox>-->
+    <!--<TextBox Text="{Binding FilterText}"></TextBox>-->
 
-        <!--<controls:SearchBar Grid.Row="0" x:Name="SearchBar" 
-                            ClearSearchButtonClicked="SearchBar_ClearSearchButtonClicked" 
+    <!--<controls:SearchBar Grid.Row="0" x:Name="SearchBar"
+                            ClearSearchButtonClicked="SearchBar_ClearSearchButtonClicked"
                             ArrowKeyPushed="SearchBar_ArrowKeyPushed"
                             EnterPressed="SearchBar_EnterPressed"
                             EscapePressed="SearchBar_EscapePressed"
