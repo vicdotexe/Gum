@@ -95,9 +95,9 @@ public class MainPanelViewModel : ViewModel, ITabManager, IRecipient<UiScalingCh
     public PluginTab AddControl(FrameworkElement element, string tabTitle, TabLocation tabLocation = TabLocation.CenterBottom)
     {
         // This should be moved to the MainPanelControl wpf 
-        string AppTheme = "Light";
-        element.Resources = new System.Windows.ResourceDictionary();
-        element.Resources.Source = new Uri($"/Themes/{AppTheme}.xaml", UriKind.Relative);
+        // string AppTheme = "Light";
+        // element.Resources = new System.Windows.ResourceDictionary();
+        // element.Resources.Source = new Uri($"/Themes/{AppTheme}.xaml", UriKind.Relative);
 
         PluginTab newPluginTab = _pluginTabFactory(element);
         newPluginTab.Title = tabTitle;
@@ -111,6 +111,6 @@ public class MainPanelViewModel : ViewModel, ITabManager, IRecipient<UiScalingCh
     
     void IRecipient<UiScalingChangedMessage>.Receive(UiScalingChangedMessage message)
     {
-        FontSize = DefaultFontSize * message.Scale;
+        FontSize = (int)(DefaultFontSize * message.Scale);
     }
 }

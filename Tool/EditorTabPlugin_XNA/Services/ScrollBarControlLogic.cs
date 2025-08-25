@@ -1,5 +1,6 @@
 ﻿using RenderingLibrary;
 using System;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace Gum.Wireframe
@@ -78,6 +79,11 @@ namespace Gum.Wireframe
 
             xnaControl.Resize += HandlePanelResize;
 
+            (mVerticalScrollBar as Control).BackColorChanged += (_, _) =>
+            {
+                (mVerticalScrollBar as Control).BackColor = Color.Red;
+            };
+            (mHorizontalScrollBar as Control).BackColor = Color.Red;
         }
         
         void HandlePanelResize(object sender, EventArgs e)

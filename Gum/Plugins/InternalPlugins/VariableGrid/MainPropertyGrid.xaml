@@ -5,6 +5,8 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:WpfDataUi="clr-namespace:WpfDataUi;assembly=WpfDataUi"
              xmlns:Converters="clr-namespace:Gum.Plugins.InternalPlugins.VariableGrid.Converters"
+             xmlns:controls="clr-namespace:WpfDataUi.Controls;assembly=WpfDataUi"
+             xmlns:wpf="clr-namespace:FluentIcons.Wpf;assembly=FluentIcons.Wpf"
              mc:Ignorable="d" 
              d:DesignHeight="200" d:DesignWidth="300">
     <UserControl.Resources>

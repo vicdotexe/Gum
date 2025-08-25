@@ -1,5 +1,10 @@
-﻿using System.Windows.Forms.Integration;
+﻿using System.Drawing;
+using System.Windows;
+using System.Windows.Forms.Integration;
 using System.Windows.Media.Animation;
+using CommunityToolkit.Mvvm.Messaging;
+using Gum;
+using Gum.Services;
 
 namespace FlatRedBall.AnimationEditorForms.Controls;
 
@@ -22,7 +27,7 @@ partial class WireframeEditControl
         }
         base.Dispose(disposing);
     }
-
+    
     #region Component Designer generated code
 
     /// <summary> 
@@ -50,9 +55,9 @@ partial class WireframeEditControl
         var elementHost = new ElementHost
         {
             Dock = System.Windows.Forms.DockStyle.Fill,
-            Child = this.ComboBox
+            Child = this.ComboBox,
         };
-
+        
         // 
         // WireframeEditControl
         // 
@@ -62,6 +67,17 @@ partial class WireframeEditControl
         this.Name = "WireframeEditControl";
         this.Size = new System.Drawing.Size(215, 21);
         this.ResumeLayout(false);
+        this.Load += (_, _) =>
+        {
+            ComboBox.Resources = Application.Current.Resources;
+            Locator.GetRequiredService<IMessenger>().Register<ThemeChangedMessage>(this, (_, _) =>
+            {
+                elementHost.BackColor =
+                    Application.Current.TryFindResource("Frb.Colors.Surface01") is System.Windows.Media.Color c
+                        ? Color.FromArgb(c.A, c.R, c.G, c.B)
+                        : Color.Transparent;
+            });
+        };
     }
 
     #endregion

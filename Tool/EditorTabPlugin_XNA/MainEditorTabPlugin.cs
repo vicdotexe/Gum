@@ -22,6 +22,7 @@ using RenderingLibrary.Graphics;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
+using System.Drawing;
 using System.Linq;
 using System.Management.Instrumentation;
 using System.Numerics;

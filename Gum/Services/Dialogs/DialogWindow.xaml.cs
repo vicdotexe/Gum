@@ -1,5 +1,7 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using System.Windows.Input;
+using Application = System.Windows.Application;
 
 namespace Gum.Services.Dialogs;
 
@@ -9,6 +11,17 @@ public partial class DialogWindow : Window
     {
         InitializeComponent();
         PreviewKeyDown += OnPreviewKeyDown;
+        Loaded += OnLoaded;
+    }
+
+    // This hacks around some artifacts that present when using custom WindowChrome
+    // when you want your window to size to content and center itself
+    private void OnLoaded(object sender, RoutedEventArgs e)
+    {
+        SizeToContent = SizeToContent.WidthAndHeight;
+        Left = Application.Current.MainWindow.Left + ((Application.Current.MainWindow.ActualWidth / 2) - Width / 2);
+        Top = Application.Current.MainWindow.Top + ((Application.Current.MainWindow.ActualHeight / 2) - Height / 2);
+        Loaded -= OnLoaded;
     }
 
     private void OnPreviewKeyDown(object sender, KeyEventArgs e)
@@ -25,4 +38,11 @@ public partial class DialogWindow : Window
             }
         }
     }
+
+    //protected override void OnContentRendered(EventArgs e)
+    //{
+    //    base.OnContentRendered(e);
+    //    InvalidateVisual();
+    //}
+
 }

@@ -17,6 +17,7 @@ using CommunityToolkit.Mvvm.Messaging;
 using System.Linq.Expressions;
 using System.Windows;
 using System.Windows.Threading;
+using Gum.Dialogs;
 using Gum.Mvvm;
 using Gum.Services.Dialogs;
 using Gum.Plugins;
@@ -79,7 +80,7 @@ file static class ServiceCollectionExtensions
         services.AddSingleton<IFileCommands, FileCommands>();
         services.AddSingleton<ProjectCommands>();
 
-        services.AddSingleton<IMessenger, WeakReferenceMessenger>();
+        services.AddSingleton<IMessenger>(_ => WeakReferenceMessenger.Default);
         
         services.AddSingleton<MainPanelViewModel>();
         services.AddSingleton<ITabManager>(provider => provider.GetRequiredService<MainPanelViewModel>());
@@ -91,6 +92,7 @@ file static class ServiceCollectionExtensions
         services.AddViewModelFuncFactories(typeof(ServiceCollectionExtensions).Assembly);
         services.AddSingleton<IDispatcher>(_ => new AppDispatcher(() => Application.Current.Dispatcher));
         services.AddSingleton<IUiSettingsService, UiSettingsService>();
+        services.AddSingleton<IThemingService, ThemingService>();
 
     }
     
