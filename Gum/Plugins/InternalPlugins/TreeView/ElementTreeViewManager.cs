@@ -567,6 +567,7 @@ public partial class ElementTreeViewManager : IRecipient<ThemeChangedMessage>, I
         TreeViewHost.Background = System.Windows.Media.Brushes.Transparent;
         TreeViewHost.Child = ObjectTreeView;
         TreeViewHost.Margin = new Thickness(0,4,0,0);
+        
         Grid.SetRow(TreeViewHost, 2);
         grid.Children.Add(TreeViewHost);
 

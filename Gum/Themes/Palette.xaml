@@ -35,8 +35,10 @@
     <Setter Property="FontSize" Value="{Binding Source={StaticResource Scale}, Path=H1}" />
   </Style>
 
-  --><!--  Icon styles (FluentIcon)  -->
-  <!--  xmlns:wpf="clr-namespace:FluentIcons.Wpf;assembly=FluentIcons.Wpf"  --><!--
+  -->
+  <!--  Icon styles (FluentIcon)  -->
+  <!--  xmlns:wpf="clr-namespace:FluentIcons.Wpf;assembly=FluentIcons.Wpf"  -->
+  <!--
   <Style x:Key="IconInline" TargetType="wpf:FluentIcon">
     <Setter Property="FontSize" Value="{Binding IconInline, Source={StaticResource Scale}}" />
   </Style>

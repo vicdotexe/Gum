@@ -58,8 +58,12 @@
       <SolidColorBrush x:Key="Frb.Surface02" Color="{DynamicResource Frb.Colors.Surface02}" />
 
       <SolidColorBrush
+        x:Key="Frb.Brushes.ContrastSubtle"
+        Opacity="0.05"
+        Color="{DynamicResource Frb.Colors.ForegroundSubtle}" />
+      <SolidColorBrush
         x:Key="Frb.Brushes.Contrast01"
-        Opacity="0.2"
+        Opacity="0.125"
         Color="{DynamicResource Frb.Colors.Foreground}" />
       <SolidColorBrush
         x:Key="Frb.Brushes.Contrast02"

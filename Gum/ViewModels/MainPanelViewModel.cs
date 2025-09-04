@@ -17,17 +17,9 @@ using Control = System.Windows.Forms.Control;
 
 namespace Gum.Controls;
 
-public class MainPanelViewModel : ViewModel, ITabManager, IRecipient<UiScalingChangedMessage>
+public class MainPanelViewModel : ViewModel, ITabManager
 {
     private readonly IUiSettingsService _uiSettingsService;
-    
-    private const double DefaultFontSize = 12;
-
-    public double FontSize
-    {
-        get => Get<double>();
-        private set => Set(value);
-    }
     
     private readonly Func<FrameworkElement, PluginTab> _pluginTabFactory;
     private ObservableCollection<PluginTab> PluginTabs { get; } = [];
@@ -50,7 +42,6 @@ public class MainPanelViewModel : ViewModel, ITabManager, IRecipient<UiScalingCh
         _pluginTabFactory = pluginTabFactory;
         messenger.RegisterAll(this);
         
-        FontSize = DefaultFontSize;
         IsToolsVisible = true;
         PluginTabs.CollectionChanged += PluginTabsOnCollectionChanged;
         
@@ -108,9 +99,4 @@ public class MainPanelViewModel : ViewModel, ITabManager, IRecipient<UiScalingCh
     }
     
     public void RemoveTab(PluginTab tab) => PluginTabs.Remove(tab);
-    
-    void IRecipient<UiScalingChangedMessage>.Receive(UiScalingChangedMessage message)
-    {
-        FontSize = (int)(DefaultFontSize * message.Scale);
-    }
 }

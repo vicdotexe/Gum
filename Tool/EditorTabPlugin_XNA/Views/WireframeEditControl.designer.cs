@@ -46,7 +46,6 @@ partial class WireframeEditControl
         this.ComboBox.IsEditable = false;
         this.ComboBox.Margin = new System.Windows.Thickness(0, 0, 0, 0);
         this.ComboBox.Name = "ComboBox";
-        this.ComboBox.Height = 21;
         this.ComboBox.VerticalContentAlignment = System.Windows.VerticalAlignment.Center;
         this.ComboBox.TabIndex = 0;
         this.ComboBox.SelectionChanged += this.ComboBox_SelectedIndexChanged;
@@ -56,7 +55,9 @@ partial class WireframeEditControl
         {
             Dock = System.Windows.Forms.DockStyle.Fill,
             Child = this.ComboBox,
+            AutoSize = true
         };
+
         
         // 
         // WireframeEditControl
@@ -70,13 +71,6 @@ partial class WireframeEditControl
         this.Load += (_, _) =>
         {
             ComboBox.Resources = Application.Current.Resources;
-            Locator.GetRequiredService<IMessenger>().Register<ThemeChangedMessage>(this, (_, _) =>
-            {
-                elementHost.BackColor =
-                    Application.Current.TryFindResource("Frb.Colors.Surface01") is System.Windows.Media.Color c
-                        ? Color.FromArgb(c.A, c.R, c.G, c.B)
-                        : Color.Transparent;
-            });
         };
     }
 

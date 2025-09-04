@@ -21,7 +21,7 @@
   <SolidColorBrush x:Key="MaterialDesign.Brush.Foreground" Color="{StaticResource Frb.Colors.Foreground}" />
 
   <Style TargetType="wpf:FluentIcon">
-    <Setter Property="FontSize" Value="{Binding Source={StaticResource Scale}, Path=IconInline, FallbackValue=14}" />
+    <Setter Property="FontSize" Value="{Binding Source={StaticResource Scale}, Path=IconInline}" />
   </Style>
 
   <!--  TextBox  -->
@@ -217,6 +217,9 @@
   <Style TargetType="{x:Type ToolBarTray}">
     <Setter Property="Background" Value="{DynamicResource Frb.Surface01}" />
   </Style>
+
+  <!--  ScrollViewer  -->
+  <Style BasedOn="{StaticResource MaterialDesignScrollViewer}" TargetType="{x:Type ScrollViewer}" />
 
   <!--  ToolBar  -->
   <Style BasedOn="{StaticResource MaterialDesignToolBar}" TargetType="{x:Type ToolBar}">
@@ -733,8 +736,15 @@
     <Setter Property="Background" Value="Transparent" />
     <Setter Property="Foreground" Value="{DynamicResource Frb.Brushes.Foreground}" />
     <Setter Property="ExpandDirection" Value="Down" />
-    <Setter Property="md:ExpanderAssist.HeaderFontSize" Value="16" />
-    <Setter Property="md:ExpanderAssist.HeaderBackground" Value="Transparent" />
+    <Setter Property="md:ExpanderAssist.HeaderFontSize" Value="{Binding Source={StaticResource Scale}, Path=H3}" />
+    <Setter Property="md:ExpanderAssist.HeaderBackground" Value="{DynamicResource Frb.Brushes.Contrast01}" />
+    <Setter Property="HeaderTemplate">
+      <Setter.Value>
+        <DataTemplate>
+          <TextBlock FontSize="{Binding Path=(md:ExpanderAssist.HeaderFontSize), RelativeSource={RelativeSource FindAncestor, AncestorType=Expander}}" Text="{Binding}" />
+        </DataTemplate>
+      </Setter.Value>
+    </Setter>
     <Setter Property="Template">
       <Setter.Value>
         <ControlTemplate TargetType="Expander">
@@ -749,13 +759,13 @@
                 HorizontalAlignment="Stretch"
                 HorizontalContentAlignment="Left"
                 themes:FrbButton.BorderCornerRadius="0"
-                Background="{DynamicResource Frb.Brushes.Contrast01}"
+                Background="{Binding Path=(md:ExpanderAssist.HeaderBackground), RelativeSource={RelativeSource TemplatedParent}}"
                 BorderThickness="0"
-                FontSize="{Binding (md:ExpanderAssist.HeaderFontSize), RelativeSource={RelativeSource TemplatedParent}}"
+                FontSize="{Binding Path=(md:ExpanderAssist.HeaderFontSize), RelativeSource={RelativeSource TemplatedParent}}"
                 Foreground="{DynamicResource Frb.Brushes.Foreground}"
                 IsChecked="{Binding IsExpanded, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
                 TextElement.FontSize="{Binding (md:ExpanderAssist.HeaderFontSize), RelativeSource={RelativeSource TemplatedParent}}">
-                <Border Background="{Binding (md:ExpanderAssist.HeaderBackground), RelativeSource={RelativeSource TemplatedParent}}">
+                <Border>
                   <Grid>
                     <Grid.ColumnDefinitions>
                       <ColumnDefinition Width="Auto" />
@@ -779,7 +789,7 @@
                       Grid.Column="1"
                       VerticalAlignment="Center"
                       Content="{TemplateBinding Header}"
-                      TextElement.FontWeight="Bold"
+                      ContentTemplate="{TemplateBinding HeaderTemplate}"
                       TextElement.Foreground="{Binding Foreground, RelativeSource={RelativeSource AncestorType={x:Type ToggleButton}}}" />
                   </Grid>
                 </Border>

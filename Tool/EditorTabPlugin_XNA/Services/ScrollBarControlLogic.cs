@@ -2,6 +2,7 @@
 using System;
 using System.Drawing;
 using System.Windows.Forms;
+using Gum.Controls;
 
 namespace Gum.Wireframe
 {
@@ -9,8 +10,8 @@ namespace Gum.Wireframe
     {
         #region Fields
 
-        ScrollBar mVerticalScrollBar;
-        ScrollBar mHorizontalScrollBar;
+        ThemedScrollBar mVerticalScrollBar;
+        ThemedScrollBar mHorizontalScrollBar;
 
         int minimumX = 0;
         int minimumY = 0;
@@ -63,13 +64,14 @@ namespace Gum.Wireframe
             mPanel = panel;
             this.xnaControl = xnaControl;
 
-            mVerticalScrollBar = new VScrollBar();
+            mVerticalScrollBar = new (){Orientation = ScrollOrientationEx.Vertical};
             mVerticalScrollBar.Dock = DockStyle.Right;
+
             //mVerticalScrollBar.Scroll += HandleVerticalScroll;
             mVerticalScrollBar.ValueChanged += HandleVerticalScroll;
             panel.Controls.Add(mVerticalScrollBar);
 
-            mHorizontalScrollBar = new HScrollBar();
+            mHorizontalScrollBar = new (){Orientation = ScrollOrientationEx.Horizontal};
             mHorizontalScrollBar.Dock = DockStyle.Bottom;
 
             mHorizontalScrollBar.ValueChanged += HandleHorizontalScroll;
@@ -81,9 +83,9 @@ namespace Gum.Wireframe
 
             (mVerticalScrollBar as Control).BackColorChanged += (_, _) =>
             {
-                (mVerticalScrollBar as Control).BackColor = Color.Red;
+                //(mVerticalScrollBar as Control).BackColor = Color.Red;
             };
-            (mHorizontalScrollBar as Control).BackColor = Color.Red;
+            //(mHorizontalScrollBar as Control).BackColor = Color.Red;
         }
         
         void HandlePanelResize(object sender, EventArgs e)

@@ -16,10 +16,11 @@ using Gum.Dialogs;
 using Gum.ToolCommands;
 using Gum.Services;
 using Gum.Services.Dialogs;
+using Gum.Themes;
 
 namespace Gum.Managers
 {
-    public class MenuStripManager : IRecipient<UiScalingChangedMessage>, IRecipient<ThemeChangedMessage>
+    public class MenuStripManager : IRecipient<UiBaseFontSizeChangedMessage>, IRecipient<ThemeChangedMessage>
     {
         #region Fields
 
@@ -456,12 +457,11 @@ namespace Gum.Managers
         const int DefaultFontSize = 8;
 
         
-        void IRecipient<UiScalingChangedMessage>.Receive(UiScalingChangedMessage message)
-        {            
-            var fontSize = DefaultFontSize * (float)message.Scale;
+        void IRecipient<UiBaseFontSizeChangedMessage>.Receive(UiBaseFontSizeChangedMessage message)
+        {
+            float fontSize = (8/12f) * (float)message.Size;
 
-            _menuStrip.Font = new System.Drawing.Font(_menuStrip.Font.FontFamily,
-                fontSize * 0.75f);
+            _menuStrip.Font = new System.Drawing.Font(_menuStrip.Font.FontFamily, fontSize);
             _menuStrip.Renderer = GetCurrentThemeRenderer(fontSize);
             _menuStrip.Invalidate();
         }

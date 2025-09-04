@@ -41,22 +41,28 @@
     </Setter>
   </Style>
 
-  <!-- <Style TargetType="WindowsFormsHost"> -->
-  <!--     <Setter Property="Background" Value="{DynamicResource Frb.Brushes.Background}" /> -->
-  <!--     <Setter Property="Foreground" Value="{DynamicResource Frb.Brushes.Foreground}" /> -->
-  <!--     <Setter Property="FontFamily" Value="Verdana" /> -->
-  <!--     <Setter Property="TextElement.FontSize" Value="12" /> -->
-  <!--     <Setter Property="TextElement.FontWeight" Value="Regular" /> -->
-  <!--     <Setter Property="TextElement.Foreground" Value="{DynamicResource Frb.Brushes.Foreground}" /> -->
-  <!--     <Setter Property="TextOptions.TextFormattingMode" Value="Ideal" /> -->
-  <!--     <Setter Property="TextOptions.TextRenderingMode" Value="Auto" /> -->
-  <!-- </Style> -->
+  <Style TargetType="WindowsFormsHost">
+    <Setter Property="Background" Value="{DynamicResource Frb.Surface01}" />
+    <Setter Property="Foreground" Value="{DynamicResource Frb.Brushes.Foreground}" />
+    <Setter Property="FontFamily" Value="Verdana" />
+    <Setter Property="TextElement.FontSize" Value="{Binding Source={StaticResource Scale}, Path=Body}" />
+    <Setter Property="TextElement.FontWeight" Value="Regular" />
+    <Setter Property="TextElement.Foreground" Value="{DynamicResource Frb.Brushes.Foreground}" />
+    <Setter Property="TextOptions.TextFormattingMode" Value="Ideal" />
+    <Setter Property="TextOptions.TextRenderingMode" Value="Auto" />
+    <Setter Property="SnapsToDevicePixels" Value="True" />
+    <Setter Property="ClipToBounds" Value="True" />
+    <Setter Property="Margin" Value="0" />
+    <Setter Property="Padding" Value="0" />
+    <Setter Property="UseLayoutRounding" Value="True" />
+  </Style>
 
   <Style BasedOn="{StaticResource {x:Type Window}}" TargetType="{x:Type dialogs:DialogWindow}" />
   <Style BasedOn="{StaticResource {x:Type Window}}" TargetType="{x:Type gum:MainWindow}" />
 
-  <Style BasedOn="{StaticResource MaterialDesignScrollViewer}" TargetType="{x:Type ScrollViewer}" />
-
+  <DataTemplate x:Key="ToggleButtonOptionDisplayOptionContentTemplate" DataType="{x:Type controls:ToggleButtonOptionDisplay+Option}">
+    <wpf:FluentIcon FontSize="{Binding Source={StaticResource Scale}, Path=IconButton}" Icon="{Binding IconName}" />
+  </DataTemplate>
 
   <!-- <Style BasedOn="{StaticResource TopLevelControl}" TargetType="controls2:MainPanelControl"> -->
   <!--     <Setter Property="Background" Value="{DynamicResource Frb.Brushes.Background}" /> -->
@@ -224,7 +230,7 @@
   </ControlTemplate>
 
 
-  
+
 
   -->
   <!-- <Style TargetType="{x:Type pt:TreeListBoxItem}" x:Key="ListBoxTreeItemStyle"> -->

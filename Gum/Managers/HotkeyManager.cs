@@ -234,11 +234,7 @@ public class HotkeyManager
         
         if (direction != 0)
         {
-            var scale = (AppScale)System.Windows.Application.Current.Resources["Scale"];
-            scale.BaseFontSize += direction;
-            //scale.BaseFontSize = 14;
-            //double step = _uiSettingsService.Scale < 1 ? 0.1 : 0.25;
-            //_uiSettingsService.Scale += direction > 0 ? step : -step;
+            _uiSettingsService.BaseFontSize += direction;
             e.Handled = true;
         }
     }
